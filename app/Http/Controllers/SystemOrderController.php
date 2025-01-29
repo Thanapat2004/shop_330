@@ -13,13 +13,12 @@ class SystemOrderController extends Controller
 {
     public function index()
     {
-         // ดึงข้อมูลจาก Order พร้อมข้อมูลลูกค้า (Customer) และ OrderDetail พร้อม Product
-    $orders = Order::with(['customer', 'orderDetails.product'])->get();
+        // ดึงข้อมูลจาก Order พร้อมข้อมูลลูกค้า (Customer) และ OrderDetail พร้อม Product
+        $orders = Order::with(['customer', 'orderDetails.product'])->get();
 
-    // ส่งข้อมูลไปยังหน้า React
-    return Inertia::render('OrderList', [
-        'orders' => $orders,
-    ]);
+        // ส่งข้อมูลไปยังหน้า React
+        return Inertia::render('Shop/Index', [
+            'orders' => $orders
+        ]);
     }
 }
-

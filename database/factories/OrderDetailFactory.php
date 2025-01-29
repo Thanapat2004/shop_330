@@ -13,6 +13,7 @@ class OrderDetailFactory extends Factory
 
     public function definition()
     {
+
         return [
             'order_id' => Order::factory(), // ใช้ factory ของ Order
             'product_id' => Product::inRandomOrder()->first()->id, // สุ่มสินค้า

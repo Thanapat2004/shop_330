@@ -18,10 +18,11 @@ class CustomerFactory extends Factory
     protected $model = Customer::class;
     public function definition(): array
     {
+        
         return  [
-            'name' => $this->faker->name, // ใช้ $this->faker แทน $faker
-            'email' => $this->faker->unique()->safeEmail, // ใช้ $this->faker แทน $faker
-            'address' => $this->faker->address, // ใช้ $this->faker แทน $faker
+            'name' => $$this->faker->name, // ใช้ $this->faker แทน $faker
+            'email' => $$this->faker->unique()->safeEmail, // ใช้ $this->faker แทน $faker
+            'address' => $$this->faker->address, // ใช้ $this->faker แทน $faker
         ];
     }
 }

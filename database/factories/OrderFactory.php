@@ -12,11 +12,12 @@ class OrderFactory extends Factory
 
     public function definition(): array
     {
+        
         return [
             'customer_id' => Customer::factory(), // เชื่อมโยงกับ CustomerFactory
             'total_amount' => $this->faker->randomFloat(2, 50, 500), // สุ่มยอดรวมของคำสั่งซื้อ
             'order_date' => $this->faker->dateTimeThisYear(), // สุ่มวันที่ของคำสั่งซื้อ
-            'status' => $this->faker->randomElement(['pending', 'completed', 'cancelled']), // สุ่มสถานะคำสั่งซื้อ
+            'status' => $this->faker->randomElement(['pending', 'completed', 'canceled']), // สุ่มสถานะคำสั่งซื้อ
         ];
     }
 }
