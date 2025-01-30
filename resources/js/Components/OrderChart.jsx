@@ -22,10 +22,10 @@ const OrderChart = ({ orders }) => {
   // กำหนดการตั้งค่าของกราฟ
   const chartConfig = {
     type: "line", // ใช้ Bar Chart
-    height: 240,
+    height: 450,
     series: [
       {
-        name: "จำนวนสินค้า",
+        name: "Quantity",
         data: quantities,
       },
     ],

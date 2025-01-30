@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Typography } from "@material-tailwind/react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import OrderChart from "@/Components/OrderChart";
+import PieChart from "@/Components/PieChart";
 
 export default function Index({ orders }) {
   // สร้าง state สำหรับจัดเก็บการจัดเรียง
@@ -30,32 +31,43 @@ export default function Index({ orders }) {
   };
 
   return (
-    <div className="p-10">
+    <div className="flex flex-col min-h-screen p-10">
+      {/* ส่วนของโลโก้ */}
       <div className="flex justify-center items-center">
         <ApplicationLogo className="w-20 h-20 text-green-600" />
       </div>
-      <h3 className="text-2xl font-semibold text-center mt-8 mb-10 text-gray-800">Shop</h3>
-     <OrderChart orders={orders} />
-      
+
+      {/* ส่วนของกราฟ */}
+      <div className="flex justify-center items-center mt-10 space-x-4">
+        <OrderChart orders={orders} />
+        <PieChart orders={orders} />
+      </div>
+
+      {/* เนื้อหาหลัก */}
+      <div className="flex-grow" />
+
       {/* Dropdown สำหรับจัดเรียง */}
-      <Card className="h-full w-full overflow-auto  border-gray-300 px-4 py-4 mb-6">
-      <div className="flex justify-end mb-4">
-  <select
-    onChange={handleSortChange}
-    className="px-4 py-2 text-gray-900 bg-transparent border-none appearance-none"
-  >
-    <option value="">Sort Orders By</option>
-    <option value="price">Price</option>
-    <option value="date">Date</option>
-  </select>
-</div>
-        
+      <Card className="w-full overflow-auto border-gray-300 px-4 py-4 mb-6 mt-10">
+        <div className="flex justify-end mb-4">
+          <select
+            onChange={handleSortChange}
+            className="px-4 py-2 text-gray-900 bg-transparent border-none appearance-none"
+          >
+            <option value="">Sort Orders By</option>
+            <option value="price">Price</option>
+            <option value="date">Date</option>
+          </select>
+        </div>
+
+        {/* ข้อมูลของคำสั่งซื้อ */}
         <Typography variant="lead" color="blue-gray" className="font-bold mb-4">
           Order Details
         </Typography>
         <Typography className="mb-6 text-gray-600">
           Overview of all customer orders and their statuses.
         </Typography>
+
+        {/* ตารางแสดงรายละเอียดคำสั่งซื้อ */}
         <table className="w-full min-w-max table-auto text-left rounded-lg overflow-hidden text-sm">
           <thead>
             <tr className="bg-gray-900 text-white">
@@ -73,6 +85,7 @@ export default function Index({ orders }) {
             {sortedOrders.map((order) => {
               const orderProductQuantities = {};
 
+              // คำนวณปริมาณสินค้าตามคำสั่งซื้อ
               order.order_details.forEach((detail) => {
                 if (orderProductQuantities[detail.product.name]) {
                   orderProductQuantities[detail.product.name] += detail.quantity;

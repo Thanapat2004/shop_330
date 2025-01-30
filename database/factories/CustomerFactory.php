@@ -15,14 +15,14 @@ class CustomerFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = Customer::class;
+    protected $model = Customer::class; // กำหนดค่า $model ให้ตรงกับ Customer
     public function definition(): array
     {
         
         return  [
-            'name' => $$this->faker->name, // ใช้ $this->faker แทน $faker
-            'email' => $$this->faker->unique()->safeEmail, // ใช้ $this->faker แทน $faker
-            'address' => $$this->faker->address, // ใช้ $this->faker แทน $faker
+            'name' => $this->faker->name, // สุ่มชื่อของลูกค้า
+            'email' => $this->faker->unique()->safeEmail, // สุ่มอีเมลล์ของลูกค้า
+            'address' => $this->faker->address, // สุ่มที่อยู่ของลูกค้า
         ];
     }
 }

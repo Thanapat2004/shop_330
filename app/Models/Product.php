@@ -8,10 +8,10 @@ class Product extends Model
 
 {  use HasFactory;
 
-    protected $fillable = ['name', 'description', 'price', 'stock'];
+    protected $fillable = ['name', 'description', 'price', 'stock']; // กำหนดให้สามารถเพิ่มข้อมูลได้ในสินค้า
 
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class); // 
     }
 }
