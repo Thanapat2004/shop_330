@@ -20,10 +20,10 @@ class ProductFactory extends Factory
     {
         
         return [
-            'name' => $this->faker->word('th_TH'),
-            'description' => $this->faker->text,
-            'price' => $this->faker->randomFloat(2, 10, 100),
-            'stock' => $this->faker->numberBetween(1, 100),
+            'name' => $this->faker->word(), // สุ่มชื่อสินค้า
+            'description' => $this->faker->text, // สุ่มคำอธิบายสินค้า
+            'price' => $this->faker->randomFloat(2, 10, 100), // สุ่มราคาสินค้า
+            'stock' => $this->faker->numberBetween(1, 100), // สุ่มจำนวนสินค้า
         ];
     }
 }

@@ -32,25 +32,25 @@ class DatabaseSeeder extends Seeder
         // ]);
 
     //     // สร้างลูกค้า 10 ราย
-    //     Customer::factory(10)->create();
+         Customer::factory(10)->create();
 
     //     // สร้างสินค้า 10 รายการ
-    //     Product::factory(10)->create();
+         Product::factory(10)->create();
 
     //     // สร้างคำสั่งซื้อ 10 รายการ
-    //     $orders = Order::factory(10)->create();
+        $orders = Order::factory(10)->create();
 
     // // สร้างรายละเอียดคำสั่งซื้อ (order details) สำหรับแต่ละคำสั่งซื้อ
-    // foreach ($orders as $order) {
-    //     OrderDetail::factory(30)->create([
-    //         'order_id' => $order->id, // เชื่อมโยง order details กับคำสั่งซื้อ
-    //         'product_id' => Product::inRandomOrder()->first()->id, // สุ่มสินค้าให้กับ order detail
-    //     ]);
-    // }
-    // CustomerHotel::factory(10)->create();
-    // RoomType::factory(3)->create();
-    // Room::factory(20)->create();
-    // Booking::factory(30)->create();
+     foreach ($orders as $order) {
+         OrderDetail::factory(30)->create([
+             'order_id' => $order->id, // เชื่อมโยง order details กับคำสั่งซื้อ
+             'product_id' => Product::inRandomOrder()->first()->id, // สุ่มสินค้าให้กับ order detail
+         ]);
+    }
+     CustomerHotel::factory(100)->create();
+     RoomType::factory(3)->create();
+     Room::factory(20)->create();
+     Booking::factory(30)->create();
      // สร้าง Teachers (อาจารย์) 10 ราย
      Teacher::factory(10)->create();
 
