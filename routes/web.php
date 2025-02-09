@@ -24,6 +24,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/Shop', [SystemOrderController::class, 'index']);
+
+Route::resource('Shop', SystemOrderController::class)->except(['destroy']);
+Route::delete('/Shop/{order}', [SystemOrderController::class, 'destroy'])->whereNumber('order')->name('Shop.destroy');
+Route::put('/shop/update/{id}', [SystemOrderController::class, 'update'])->name('Shop.update');
+
+
+
 
 require __DIR__.'/auth.php';
