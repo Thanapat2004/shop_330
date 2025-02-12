@@ -1,5 +1,6 @@
 import { Card, CardBody, CardHeader, Typography } from "@material-tailwind/react";
 import Chart from "react-apexcharts";
+import "@fontsource/noto-sans-thai";
 
 const OrderChart = ({ orders }) => {
   if (!orders || orders.length === 0) {
@@ -25,7 +26,7 @@ const OrderChart = ({ orders }) => {
       case "pending":
         statusCounts.pending++;
         break;
-      case "cancelled":
+      case "canceled":
         statusCounts.cancelled++;
         break;
       case "issues":
@@ -38,27 +39,35 @@ const OrderChart = ({ orders }) => {
 
   const chartConfig = {
     type: "pie",
-    width: 500,
-    height: 500,
     series: Object.values(statusCounts),
     options: {
-      chart: { toolbar: { show: false } },
+      chart: { 
+        toolbar: { show: false }, 
+        responsive: true, //  ทำให้กราฟปรับขนาดตามหน้าจอ
+      },
       dataLabels: { enabled: false },
-      colors: ["#020617", "#ff8f00", "#00897b", "#1e88e5", "#d81b60"],
-      labels: ["Completed", "In Progress", "Pending", "Cancelled", "Issues"],
-      legend: { show: true },
+      colors: ["#4CAF50", "#FFB74D", "#42A5F5", "#E57373", "#9575CD"],
+      labels: ["completed", "inProgress", "pending", "cancelled", "issues"],
+      legend: { show: true, position: "bottom" }, // ให้ legend อยู่ข้างล่างในจอเล็ก
     },
   };
 
   return (
-    <Card>
-      <CardHeader floated={false} shadow={false} color="transparent" className="flex flex-col gap-4 rounded-none md:flex-row md:items-center">
-        <Typography variant="h6" color="blue-gray">
-          Order Status Distribution
+    <Card className="w-full max-w-2xl mx-auto"> {/*  ปรับให้ card ไม่กว้างเกินไป */}
+      <CardHeader 
+        floated={false} 
+        shadow={false} 
+        color="transparent" 
+        className="flex flex-wrap justify-center gap-4 rounded-none md:flex-row md:items-center md:justify-between"
+      >
+        <Typography variant="h6" color="blue-gray" className="text-center md:text-left">
+          สถานะคําสั่งซื้อ
         </Typography>
       </CardHeader>
       <CardBody className="mt-4 grid place-items-center px-2">
-        <Chart {...chartConfig} />
+        <div className="w-full max-w-[90%] md:max-w-[75%]">
+          <Chart {...chartConfig} />
+        </div>
       </CardBody>
     </Card>
   );

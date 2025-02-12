@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@docsearch/react": "^3.8.3",
+        "@fontsource/noto-sans-thai": "^5.1.1",
         "@heroicons/react": "^1.0.6",
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-react": "^0.8.1",

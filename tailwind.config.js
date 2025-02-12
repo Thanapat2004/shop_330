@@ -12,8 +12,7 @@ module.exports = withMT({
   theme: {
     extend: {
       fontFamily: {
-        k2d: ['K2D', 'sans-serif'],
-        sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+        sans: ['Noto Sans Thai', ...defaultTheme.fontFamily.sans],
       },
     },
   },

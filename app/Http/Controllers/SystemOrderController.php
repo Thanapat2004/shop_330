@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Product;
@@ -13,17 +12,19 @@ use DB;
 class SystemOrderController extends Controller
 {
     public function index()
+
     {
          
-    $orders = Order::with(['customer', 'orderDetails.product'])->get();
+        $orders = Order::with(['customer', 'orderDetails.product',])->get();
+        
 
     return Inertia::render('Shop/Index', [
-        'orders' => $orders
-    ]);
+            'orders' => $orders,
+
+
+        ]);
+
     }
-
-
-
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -56,21 +57,6 @@ class SystemOrderController extends Controller
         return redirect()->route('Shop.index')->with('success', 'Order created successfully');
     }
 
-    public function show(Order $order)
-    {
-        // ดึงข้อมูลพร้อมกับ orderDetails และ product
-    $order = $order->load(['orderDetails.product']);
-
-    // ดึงข้อมูล order details ที่เชื่อมโยงกับ product
-    $order = Order::with(['orderDetails.product'])->find($order->id);
-
-    if (!$order) {
-        return response()->json(['error' => 'Order not found'], 404);
-    }
-
-    // ส่งข้อมูลกลับในรูปแบบ JSON
-    return response()->json($order);
-    }
 
 
 
@@ -88,15 +74,11 @@ class SystemOrderController extends Controller
             'total_amount' => $request->total_amount,
             'status' => $request->status,
             'order_date' => $request->order_date,
-            'email' => $request->email,
-            'customer' => $request->customer
+            
         ]);
     
         return redirect()->route('Shop.index')->with('success', 'Order updated successfully');
     }
-    
-
-    
     
     public function create()
     {

@@ -39,7 +39,7 @@ const OrderChart = ({ orders }) => {
       dataLabels: {
         enabled: false,
       },
-      colors: ["#020617"],
+      colors: ["#22C55E"],
       stroke: {
         lineCap: "round",
         curve: "smooth",
@@ -67,7 +67,7 @@ const OrderChart = ({ orders }) => {
       yaxis: {
         labels: {
           style: {
-            colors: "#616161",
+            colors: "#22C55E",
             fontSize: "12px",
             fontFamily: "inherit",
             fontWeight: 400,
@@ -98,7 +98,8 @@ const OrderChart = ({ orders }) => {
   };
 
   return (
-    <div className="w-full mb-8">
+    <div className="w-full mb-8 bg-white p-4 rounded-md shadow-md">
+      <h2 className=" font-semibold text-gray-800">กราฟแสดงสินค้า</h2>
       <Chart {...chartConfig} />
     </div>
   );
